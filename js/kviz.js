@@ -20,17 +20,48 @@ const pitanja = [
 
 let indeksPitanja = 0;
 let poeni = 0;
+let vreme;
+let interval;
 
 const pitanjeElement = document.getElementById("pitanje");
 const odgovoriElement = document.getElementById("odgovori");
 const dugmeDaljeElement = document.getElementById("dalje");
 const rezultatElement = document.getElementById("rezultat");
+const vremeElement = document.getElementById("tajmer");
+
+function onemoguciOdgovore(){
+    const dugmici = document.querySelectorAll("#odgovori button");
+    dugmici.forEach((dugme) => {
+        dugme.disabled = true;
+    });
+}
 
 function prikazipitanje(){
 
     dugmeDaljeElement.style.display = "none";
     pitanjeElement.innerHTML = pitanja[indeksPitanja].tekst;
     odgovoriElement.innerHTML = "";
+    vremeElement.innerHTML = `Preostalo vreme: ${vreme}s`;
+    vreme = 10;
+    interval = setInterval(() => {
+        vreme--;
+        vremeElement.innerHTML = `Preostalo vreme: ${vreme}s`;
+        if(vreme == 3){
+            vremeElement.style.color = "red";
+        } 
+        else{
+            vremeElement.style.color = "grey";
+        }
+
+        if(vreme == 0) {
+            clearInterval(interval);
+            onemoguciOdgovore();
+            alert("Vreme je isteklo. Tacan odgovor je : " + pitanja[indeksPitanja].tacan);
+            dugmeDaljeElement.style.display = "block";
+        }
+    
+    }, 1000);
+
     pitanja[indeksPitanja].odgovori.forEach((odgovor) => {
         const dugme = document.createElement("button");
         dugme.addEventListener("click", () => {
