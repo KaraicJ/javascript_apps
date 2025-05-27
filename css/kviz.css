@@ -1,0 +1,42 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, rgb(14, 238, 227), rgb(18, 85, 79));
+    height: 100vh;
+    font-size: 20px;
+}
+
+#kviz{
+    backdrop-filter: blur(50px);
+    background-color: aquamarine;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 4px 6px 6px rgb(59, 59, 59);
+}
+
+#pitanje{
+    padding: 10px;
+}
+
+button{
+    display: block;
+    background-color: rgb(212, 240, 240);
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+button:hover{
+    transform: scale(1.05);
+}
+
+#dalje{
+    background-color: rgb(54, 102, 86);
+    font-weight: bold;/
+}
